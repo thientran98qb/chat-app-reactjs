@@ -1,0 +1,68 @@
+@use "../../scss/" as *;
+
+.header {
+    height: 8rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: height 0.3 ease, background-color 0,3 ease;
+    .header-wrapper {
+        height: 100%;
+        @include flex(center, space-between);
+        padding: 0 2rem;
+        @include mobile {
+            justify-content: center;
+        }
+    }
+    &__logo {
+        @include flex(center, unset);
+        font-size: 2.5rem;
+        font-weight: 600;
+        img {
+            margin-right: 10px;
+            width: 50px;
+            @include mobile {
+                width: 30px;
+                margin-right: 0;
+            }
+        }
+
+    }
+    &__nav {
+        &--item {
+            display: inline-block;
+            margin-right: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                height: 2px;
+                background-color: red;
+                width: 0px;
+                transition: width 0.3s ease;
+            }
+            &.active::after, &:hover::after {
+                width: 100%;
+            }
+        }
+        @include mobile {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            height: 5rem;
+            padding: 0 2rem;
+            background-color: $body-bg;
+            box-shadow: $box-shadow;
+
+            @include flex(center, space-between)
+        }
+    }
+}
